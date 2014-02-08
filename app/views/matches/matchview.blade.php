@@ -23,6 +23,9 @@
 	@foreach($draws as $d)
 		{{$d}}<br/>
 	@endforeach
+
+	Updated:  2/8/2014
 	</div>
+
 	
 @stop

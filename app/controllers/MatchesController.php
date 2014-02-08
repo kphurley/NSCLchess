@@ -24,8 +24,10 @@ class MatchesController extends BaseController{
 	}
 
 	public function createMatch(){
-		//TODO - This function should grab all of the data from the match and update all
-		//database tables accordingly
+		
+		/* This function is now able to compute the final score and is passing 
+		who won what board to the view.  Still need to add code to update the
+		match database and print a table with the results of the game */
 
 		$homeScore = 0.0;
 		$visScore = 0.0;
