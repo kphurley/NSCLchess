@@ -1,0 +1,3 @@
+[Thu Feb 06 21:34:54.718853 2014] [access_compat:error] [pid 6500:tid 1532] [client 192.168.0.101:53847] AH01797: client denied by server configuration: C:/wamp/www/laravel/public/
+[Thu Feb 06 21:35:03.936380 2014] [access_compat:error] [pid 6500:tid 1532] [client 192.168.0.101:53851] AH01797: client denied by server configuration: C:/wamp/www/laravel/public/
+[Thu Feb 06 21:49:44.538747 2014] [access_compat:error] [pid 7940:tid 1532] [client 192.168.0.101:53886] AH01797: client denied by server configuration: C:/wamp/www/laravel/public/
