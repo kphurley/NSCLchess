@@ -14,7 +14,7 @@
 
 	@foreach($matches as $match)
 		<tr>
-			<td>{{ $match -> id }}</td>
+			<td>{{ link_to_route('match', 'View', array($match->id)) }}</td>
 			<td>{{ $match -> homeschool }}</td>
 			<td>{{ $match-> homepoints }}</td>
 			<td>{{ $match -> visitorschool }}</td>

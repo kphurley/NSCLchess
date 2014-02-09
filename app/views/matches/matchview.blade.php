@@ -81,6 +81,8 @@
 	
 
 	</table>
+
+	{{ link_to_route('matches', 'Back to match listing') }}
 	
 	</div>
 	

@@ -38,30 +38,24 @@ class MatchesController extends BaseController{
 		
 		/* This function is now able to compute the final score and is passing 
 		who won what board to the view.  Still need to add code to update the
-		match database and print a table with the results of the game */
+		match, team and player databases */
 
+		//-------------Local variable declarations--------------------------------
 		$homeScore = 0.0;
 		$visScore = 0.0;
 		$draws = array();
 		$oldinput = Session::get('values');  //This gets the schools and season from previous form
-
-		
 		$homeplayers=Input::get('homeboard');
 		$visplayers=Input::get('visitorboard');
-
-
 		$home = $oldinput[0];
 		$visitor = $oldinput[1];
-
-		
-
-
 		$homeBoardScorers = Input::get('homescore');
 		$visBoardScorers = Input::get('visscore');
-
 		$homeBoardWins = array();
 		$visBoardWins = array();
+		//-------------------------------------------------------------------------
 
+		//------------------------Populate array of board scores-------------------
 		$i = 0;
 		for($i = 0; $i <8; $i++){
 			$homeBoardWins[$i] = 0.0;
@@ -82,7 +76,7 @@ class MatchesController extends BaseController{
 			}				
 		}
 
-		//first scan for draws, change accordingly, and then compute board score for each board
+		//Handle draws, and then compute board score for each board
 		$i = 0;
 		for($i = 0; $i <8; $i++){
 			if($homeBoardWins[$i]==$visBoardWins[$i]){
@@ -92,20 +86,19 @@ class MatchesController extends BaseController{
 			$homeBoardWins[$i] = $homeBoardWins[$i]*(13.0-($i+1));
 			$visBoardWins[$i] = $visBoardWins[$i]*(13.0-($i+1));
 		}
+
+		//-----------------------------------------------------------------------
 			
+		// code for color tracking - not used yet
+		
+		$homeColors = array(0=> 'white', 1=> 'black', 2=> 'white', 3=> 'black',
+		 					4=> 'black', 5=> 'white', 6=> 'black', 7=> 'white');
 
-
-		// Individual results and DB updating logic
-
-		$i = 1;
-		$homeColors = array(1=> 'white', 2=> 'black', 3=> 'white', 4=> 'black',
-							5=> 'black', 6=> 'white', 7=> 'black', 8=> 'white');
-
-		$visColors = array(1=> 'black', 2=> 'white', 3=> 'black', 4=> 'white',
-							5=> 'white', 6=> 'black', 7=> 'white', 8=> 'black');
+		$visColors = array(0=> 'black', 1=> 'white', 2=> 'black', 3=> 'white',
+		 					4=> 'white', 5=> 'black', 6=> 'white', 7=> 'black');
 
 		
-		//Team Scores Logic
+		//-----------------------------Team Scores Logic---------------------------
 
 		//this code handles draws
 		foreach($homeBoardScorers as $hScorer){
@@ -131,9 +124,9 @@ class MatchesController extends BaseController{
 			$visScore +=(13.0-$vScorer);
 		}
 
-		//end Team Score Logic
+		//--------------------------end Team Score Logic---------------------------
 
-		//create a new entry in Match DB
+		//---------------------Create a new entry in Match DB----------------------
 
 		Match::create(array(
 		'homeschool'=>$oldinput[0],
@@ -174,11 +167,177 @@ class MatchesController extends BaseController{
 		'visitorboard8pts'=>$visBoardWins[7],
 		'season'=>$oldinput[2]
 		));
+		//---------------------------------------------------------------------------
 
-		//update Team stats
+		//---------------------Individual results and DB updating logic---------------
+
+		//update Team stats - working
+
+		DB::table('teams')->where('school',$oldinput[0])
+						->increment('league_points',$homeScore);
+		DB::table('teams')->where('school',$oldinput[1])
+						->increment('league_points',$visScore);
+
+		if($homeScore > $visScore){
+			DB::table('teams')->where('school',$oldinput[0])
+						->increment('league_wins');
+			DB::table('teams')->where('school',$oldinput[1])
+						->increment('league_losses');
+		}
+
+		else if($homeScore < $visScore){
+			DB::table('teams')->where('school',$oldinput[0])
+						->increment('league_losses');
+			DB::table('teams')->where('school',$oldinput[1])
+						->increment('league_wins');
+		}
+
+		else{
+			DB::table('teams')->where('school',$oldinput[0])
+						->increment('league_draws');
+			DB::table('teams')->where('school',$oldinput[1])
+						->increment('league_draws');
+		}
+
+		
+		//variable reference for convenienmce
+
+		//home school - $oldinput[0]
+		//visiting school - $oldinput[1]
+		//home score - $homeScore
+		//visiting score - $visScore
+		//array of home players by id - $homeplayers
+		//array of vis players by id - $visplayers
+		//array of home scores - $homeBoardWins
+		//array of vis players - $visBoardWins
+		//season tag - $oldinput[2]
+
 		
 
 		//update player stats
+
+		//foreach player in $homeplayers - update win,loss, draw, add points
+		$i = 0;
+		foreach($homeplayers as $homeplayer){
+			$boardScore = 12.0-$i;
+			$boardColor = $homeColors[$i];
+
+			// Update point entries for home player
+			DB::table('players')->where('id',$homeplayer)
+						->increment('league_points', $homeBoardWins[$i]);
+			DB::table('players')->where('id',$homeplayer)
+						->increment('league_pt_poss', $boardScore);
+
+			$ptearned = DB::table('players')->where('id',$homeplayer)->pluck('league_points');
+			$ptposs = DB::table('players')->where('id',$homeplayer)->pluck('league_pt_poss');
+
+			DB::table('players')->where('id',$homeplayer)
+						->update(array('league_pt_pct'=>($ptearned/$ptposs)));
+
+
+			if($homeBoardWins[$i]==$boardScore){  //this player won
+				DB::table('players')->where('id',$homeplayer)
+						->increment('league_wins');
+				if($boardColor == 'white'){
+					DB::table('players')->where('id',$homeplayer)
+						->increment('white_wins');
+				} 
+				else{
+					DB::table('players')->where('id',$homeplayer)
+						->increment('black_wins');
+				}
+
+			}
+			else if ($homeBoardWins[$i]==0.0){ //this player lost
+				DB::table('players')->where('id',$homeplayer)
+						->increment('league_losses');
+				if($boardColor == 'white'){
+					DB::table('players')->where('id',$homeplayer)
+						->increment('white_losses');
+				} 
+				else{
+					DB::table('players')->where('id',$homeplayer)
+						->increment('black_losses');
+				}
+			}
+			else{  //draw
+				DB::table('players')->where('id',$homeplayer)
+						->increment('league_draws');
+				if($boardColor == 'white'){
+					DB::table('players')->where('id',$homeplayer)
+						->increment('white_draws');
+				} 
+				else{
+					DB::table('players')->where('id',$homeplayer)
+						->increment('black_draws');
+				}
+			}
+
+			$i++;
+			
+		}
+
+		//foreach player in $visplayers - update win,loss, draw, add points
+		$i = 0;
+		foreach($visplayers as $visplayer){
+			$boardScore = 12.0-$i;
+			$boardColor = $homeColors[$i];
+
+			// Update point entries for home player
+			DB::table('players')->where('id',$visplayer)
+						->increment('league_points', $visBoardWins[$i]);
+			DB::table('players')->where('id',$visplayer)
+						->increment('league_pt_poss', $boardScore);
+
+			$ptearned = DB::table('players')->where('id',$visplayer)->pluck('league_points');
+			$ptposs = DB::table('players')->where('id',$visplayer)->pluck('league_pt_poss');
+
+			DB::table('players')->where('id',$visplayer)
+						->update(array('league_pt_pct'=>($ptearned/$ptposs)));
+
+			
+			if($visBoardWins[$i]==$boardScore){  //this player won
+				DB::table('players')->where('id',$visplayer)
+						->increment('league_wins');
+				if($boardColor == 'white'){
+					DB::table('players')->where('id',$visplayer)
+						->increment('white_wins');
+				} 
+				else{
+					DB::table('players')->where('id',$visplayer)
+						->increment('black_wins');
+				}
+
+			}
+			else if ($visBoardWins[$i]==0.0){ //this player lost
+				DB::table('players')->where('id',$visplayer)
+						->increment('league_losses');
+				if($boardColor == 'white'){
+					DB::table('players')->where('id',$visplayer)
+						->increment('white_losses');
+				} 
+				else{
+					DB::table('players')->where('id',$visplayer)
+						->increment('black_losses');
+				}
+			}
+			else{  //draw
+				DB::table('players')->where('id',$visplayer)
+						->increment('league_draws');
+				if($boardColor == 'white'){
+					DB::table('players')->where('id',$visplayer)
+						->increment('white_draws');
+				} 
+				else{
+					DB::table('players')->where('id',$visplayer)
+						->increment('black_draws');
+				}
+			}
+
+			$i++;
+			
+		}
+		//redirect user to match list page with confirmation message
 
 		return Redirect::route('matches')
 			->with('message', 'Match created successfully');
