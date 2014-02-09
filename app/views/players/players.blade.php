@@ -12,7 +12,7 @@
 			<th>Losses</th>
 			<th>Draws</th>
 			<th>Points</th>
-			<th>Pct of Pts Won</th>
+			<th>Pct</th>
 		</tr>
 
 	@foreach($players as $player)

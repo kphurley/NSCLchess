@@ -10,26 +10,27 @@
 </head>
 
 <body>
-<div class = "container">
-<nav class = "navbar navbar-default" role="navigation">	
 
+<div class = "navbar navbar-fixed-top">
+<div class = "navbar-inner">
+<div class = "container">	
 
-
-
-	<ul class = "nav navbar-nav">
+	<ul class = "nav">
 		
 		<li>{{ link_to_route('home', 'Home') }}</li>
 		<li>{{ link_to_route('players', 'Players') }}</li>
 		<li>{{ link_to_route('teams', 'Standings') }}</li>
+		<li>{{ link_to_route('matches', 'Matches') }}</li>
 	</ul>
 
-
-</nav>
+</div>
+</div>
 </div>
 
 <div class = "container">
 
 <br />
+<br/>
 
 	@if(Session::has('message'))
 		<p> {{ Session::get('message') }}</p>

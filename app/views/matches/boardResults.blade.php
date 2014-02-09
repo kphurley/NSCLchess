@@ -24,9 +24,9 @@
 		<tr>
 			<td>{{ Form::label('board[]', $i)}} </td>
 			<td>{{ Form::checkbox('homescore[]', $i) }}</td>
-			<td>{{ Form::select('homeboard[]', Player::where('school','=', $home)->lists('name')) }}</td>
+			<td>{{ Form::select('homeboard[]', $homeplayers) }}</td>
 			
-			<td>{{ Form::select('visitorboard[]', Player::where('school','=', $visitor)->lists('name')) }}</td>
+			<td>{{ Form::select('visitorboard[]', $visplayers) }}</td>
 			<td>{{ Form::checkbox('visscore[]', $i) }}</td>
 		</tr>
 		@endfor
