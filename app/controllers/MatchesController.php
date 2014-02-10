@@ -177,29 +177,29 @@ class MatchesController extends BaseController{
 
 		//update Team stats - working
 
-		DB::table('teams')->where('school',$oldinput[0])
+		DB::table('teams')->where('school',$home)
 						->increment('league_points',$homeScore);
-		DB::table('teams')->where('school',$oldinput[1])
+		DB::table('teams')->where('school',$visitor)
 						->increment('league_points',$visScore);
 
 		if($homeScore > $visScore){
-			DB::table('teams')->where('school',$oldinput[0])
+			DB::table('teams')->where('school',$home)
 						->increment('league_wins');
-			DB::table('teams')->where('school',$oldinput[1])
+			DB::table('teams')->where('school',$visitor)
 						->increment('league_losses');
 		}
 
 		else if($homeScore < $visScore){
-			DB::table('teams')->where('school',$oldinput[0])
+			DB::table('teams')->where('school',$home)
 						->increment('league_losses');
-			DB::table('teams')->where('school',$oldinput[1])
+			DB::table('teams')->where('school',$visitor)
 						->increment('league_wins');
 		}
 
 		else{
-			DB::table('teams')->where('school',$oldinput[0])
+			DB::table('teams')->where('school',$home)
 						->increment('league_draws');
-			DB::table('teams')->where('school',$oldinput[1])
+			DB::table('teams')->where('school',$visitor)
 						->increment('league_draws');
 		}
 
