@@ -25,7 +25,7 @@ class MatchesController extends BaseController{
 		$visitor = Input::get('visitor');
 		$homePlayers = Player::where('school','=', $home)->lists('name','id');
 		$visPlayers = Player::where('school','=', $visitor)->lists('name','id');
-				
+
 
 		return View::make('matches.boardResults')
 			->with('title', 'Board Results for NSCL match')
@@ -131,9 +131,9 @@ class MatchesController extends BaseController{
 		//---------------------Create a new entry in Match DB----------------------
 
 		Match::create(array(
-		'homeschool'=>$oldinput[0],
+		'homeschool'=>$home,
 		'homepoints'=>$homeScore,
-		'visitorschool'=>$oldinput[1],
+		'visitorschool'=>$visitor,
 		'visitorpoints'=>$visScore,
 		'homeboard1'=>DB::table('players')->where('id',$homeplayers[0])->pluck('name'),
 		'homeboard1pts'=>$homeBoardWins[0],
