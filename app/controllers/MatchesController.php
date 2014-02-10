@@ -19,14 +19,16 @@ class MatchesController extends BaseController{
 
 		$passvalues = array(0=>Input::get('home'),1=>Input::get('visitor'),2=>Input::get('season'));
 		Session::flash('values',$passvalues);
-		Redirect::to('matches/create');
+		//Redirect::to('matches/create');
 
 		$home = Input::get('home');
 		$visitor = Input::get('visitor');
 		$homePlayers = Player::where('school','=', $home)->lists('name','id');
 		$visPlayers = Player::where('school','=', $visitor)->lists('name','id');
-				
 
+
+
+		
 		return View::make('matches.boardResults')
 			->with('title', 'Board Results for NSCL match')
 			->with('home', Input::get('home'))
@@ -46,11 +48,11 @@ class MatchesController extends BaseController{
 		$homeScore = 0.0;
 		$visScore = 0.0;
 		$draws = array();
-		$oldinput = Session::get('values');  //This gets the schools and season from previous form
+		//$oldinput = Session::get('values');  //This gets the schools and season from previous form
 		$homeplayers=Input::get('homeboard');
 		$visplayers=Input::get('visitorboard');
-		$home = $oldinput[0];
-		$visitor = $oldinput[1];
+		$home = Input::get('hometeam');
+		$visitor = Input::get('visteam');
 		$homeBoardScorers = Input::get('homescore');
 		$visBoardScorers = Input::get('visscore');
 		$homeBoardWins = array();
@@ -131,9 +133,9 @@ class MatchesController extends BaseController{
 		//---------------------Create a new entry in Match DB----------------------
 
 		Match::create(array(
-		'homeschool'=>$oldinput[0],
+		'homeschool'=>$home,
 		'homepoints'=>$homeScore,
-		'visitorschool'=>$oldinput[1],
+		'visitorschool'=>$visitor,
 		'visitorpoints'=>$visScore,
 		'homeboard1'=>DB::table('players')->where('id',$homeplayers[0])->pluck('name'),
 		'homeboard1pts'=>$homeBoardWins[0],
@@ -167,7 +169,7 @@ class MatchesController extends BaseController{
 		'homeboard8pts'=>$homeBoardWins[7],
 		'visitorboard8'=>DB::table('players')->where('id',$visplayers[7])->pluck('name'),
 		'visitorboard8pts'=>$visBoardWins[7],
-		'season'=>$oldinput[2]
+		'season'=>Input::get('seas')
 		));
 		//---------------------------------------------------------------------------
 
