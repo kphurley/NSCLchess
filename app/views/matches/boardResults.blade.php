@@ -18,9 +18,9 @@
 			<th>V</th>
 		</tr>
 
-		{{ Form::hidden($hometeam, $home)}}
-		{{ Form::hidden($visteam, $vis)}}
-		{{ Form::hidden($seas, $season)}}
+		{{ Form::hidden('hometeam', @home)}}
+		{{ Form::hidden('visteam', $visitor)}}
+		{{ Form::hidden('seas', $season)}}
 
 		@for ($i = 1; $i <= 8; $i++)
 		<tr>
