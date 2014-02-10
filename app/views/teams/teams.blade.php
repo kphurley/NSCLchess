@@ -4,7 +4,8 @@
 	<h1>NSCL Standings and Crosstable</h1>
 
 	
-	<table class = "table table-bordered table-striped table-condensed">
+	<table class = "table table-bordered table-striped table-condensed sortable">
+		<thead>
 		<tr>
 			<th>North Division</th>
 			<th>Wins</th>
@@ -13,7 +14,9 @@
 			<th>Points</th>
 		
 		</tr>
-
+		</thead>
+	
+	<tbody>
 	@foreach($teams as $team)
 		
 			@if ($team -> division === 'North')
@@ -27,12 +30,13 @@
 			@endif
 		
 	@endforeach
+	</tbody>
 
 	</table>
 
 	
-
-	<table class = "table table-bordered table-striped table-condensed">
+	<table class = "table table-bordered table-striped table-condensed sortable">
+		<thead>
 		<tr>
 			<th>South Division</th>
 			<th>Wins</th>
@@ -40,7 +44,9 @@
 			<th>Draws</th>
 			<th>Points</th>
 		</tr>
+	</thead>
 
+	<tbody>
 	@foreach($teams as $team)
 		
 			@if ($team -> division === 'South')
@@ -54,7 +60,7 @@
 			@endif
 		
 	@endforeach
-
+	</tbody>
 	</table>
 
 

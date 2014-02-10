@@ -3,9 +3,11 @@
 class MatchesController extends BaseController{
 
 	public function showMatches(){
+		
+		$matches = Match::all();
 		$view = View::make('matches.matches')
 			->with('title', 'NSCL Matches')
-			->with('matches', Match::all());
+			->with('matches', $matches);
 		return $view;
 	}
 
@@ -23,7 +25,7 @@ class MatchesController extends BaseController{
 		$visitor = Input::get('visitor');
 		$homePlayers = Player::where('school','=', $home)->lists('name','id');
 		$visPlayers = Player::where('school','=', $visitor)->lists('name','id');
-		
+				
 
 		return View::make('matches.boardResults')
 			->with('title', 'Board Results for NSCL match')

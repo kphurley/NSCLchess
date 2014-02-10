@@ -23,5 +23,5 @@
 	@endforeach
 	</table>
 	
-	<p>{{ link_to_route('add_match', 'Add New Match') }}</p>
+	
 @stop

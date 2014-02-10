@@ -13,6 +13,13 @@
 
 Route::get('/', array('as'=> 'home', 'uses' => 'HomeController@showWelcome'));
 
+Route::get('users/login', array('as'=> 'login', 'uses' => 'UsersController@showLogin'));
+Route::get('users/register', array('as'=> 'register', 'uses' => 'UsersController@showRegistration'));
+Route::post('users/create', array('as'=> 'create_user', 'uses' => 'UsersController@createUser'));
+Route::post('users/signin', array('as'=> 'signin', 'uses' => 'UsersController@signinUser'));
+Route::get('users/logout', array('as'=> 'logout', 'uses' => 'UsersController@logoutUser'));
+Route::get('users/dashboard', array('as'=> 'dashboard', 'uses' => 'UsersController@getDashboard'));
+
 // Player routes
 Route::get('players', array('as'=> 'players', 'uses' => 'PlayersController@showPlayers'));
 Route::get('players/new', array('as'=>'new_player','uses'=>'PlayersController@addNewPlayer'));

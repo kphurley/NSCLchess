@@ -6,7 +6,7 @@ class TeamsController extends BaseController {
 		$view = View::make('teams.teams')
 			->with('title', 'NSCL Player List')
 			->with('teams', Team::all());  
-			//need to send the array with match results here
+			
 		return $view;
 	}
 

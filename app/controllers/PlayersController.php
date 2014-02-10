@@ -5,9 +5,11 @@ class PlayersController extends BaseController {
 	//public $restful = true;
 
 	public function showPlayers(){
+		$players = Player::paginate(10);
 		$view = View::make('players.players')
 			->with('title', 'NSCL Player List')
-			->with('players', Player::all());
+			->with('players', $players);
+
 		return $view;
 	}
 

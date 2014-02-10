@@ -35,5 +35,5 @@
 	@endforeach
 	</table>
 	
-	<p>{{ link_to_route('new_player', 'Add New Player') }}</p>
+	
 @stop

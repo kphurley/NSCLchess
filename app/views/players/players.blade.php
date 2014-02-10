@@ -3,8 +3,8 @@
 @section('content')
 	<h1>Players Home Page</h1>
 
-	<table class = "table table-striped table-bordered table-condensed">
-		<tr>
+	<table class = "table table-striped table-bordered table-condensed sortable">
+		<thead><tr>
 			<th>Name</th>
 			<th>School</th>
 			<th>Grade</th>
@@ -13,8 +13,8 @@
 			<th>Draws</th>
 			<th>Points</th>
 			<th>Pct</th>
-		</tr>
-
+		</tr></thead>
+<tbody>
 	@foreach($players as $player)
 		<tr>
 			<td>{{ $player -> name }}</td>
@@ -27,7 +27,9 @@
 			<td>{{ $player -> league_pt_pct }}</td>
 		</tr>
 	@endforeach
+</tbody>
 	</table>
+	{{ $players->links() }}
 	
-	<p>{{ link_to_route('new_player', 'Add New Player') }}</p>
+	
 @stop
