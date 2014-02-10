@@ -18,7 +18,7 @@
 			<th>V</th>
 		</tr>
 
-		{{ Form::hidden('hometeam', @home)}}
+		{{ Form::hidden('hometeam', $home)}}
 		{{ Form::hidden('visteam', $visitor)}}
 		{{ Form::hidden('seas', $season)}}
 
