@@ -26,7 +26,7 @@
 		<li>{{ link_to_route('matches', 'Match Results') }}</li>
 
 		 @if(!Auth::check())
-                    <li>{{ link_to_route('register', 'Coaches Registration') }}</li>   
+                      
                     <li>{{ link_to_route('login', 'Coaches Login') }}</li>   
                 @else
                     <li>{{ link_to_route('dashboard', 'Coach Dashboard')}}</li>
