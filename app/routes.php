@@ -34,5 +34,6 @@ Route::get('matches', array('as'=>'matches', 'uses'=>'MatchesController@showMatc
 Route::get('matches/add', array('as'=>'add_match', 'uses'=>'MatchesController@addNewMatch'));
 Route::post('matches/add2', array('uses'=>'MatchesController@addNewMatchWithTeams'));
 Route::get('match/{id}', array('as'=>'match', 'uses' => 'MatchesController@viewMatch'));
-Route::post('matches/create', array('uses'=>'MatchesController@createMatch'));
+Route::post('matches/create', array('uses'=>'MatchesController@confirmAddMatch'));
+Route::post('matches/confirm', array('as'=>'confirmMatch','uses'=>'MatchesController@createMatch'));
 

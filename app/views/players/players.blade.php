@@ -29,7 +29,12 @@
 	@endforeach
 </tbody>
 	</table>
-	{{ $players->links() }}
+
+	@if(Auth::check())
+        {{ link_to_route('new_player', 'Add New Player', null, array('class'=>'btn btn-large btn-primary'))  }}   
+                    
+    @endif
+	
 	
 	
 @stop

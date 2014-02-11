@@ -23,5 +23,8 @@
 	@endforeach
 	</table>
 	
-	
+	@if(Auth::check())
+        {{ link_to_route('add_match', 'Add New Match', null, array('class'=>'btn btn-large btn-primary')) }}  
+                    
+    @endif
 @stop

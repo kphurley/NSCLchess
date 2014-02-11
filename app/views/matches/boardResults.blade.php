@@ -6,7 +6,7 @@
 
 
 
-	{{ Form::open ( array('url'=>'matches/create', 'method'=>'POST')) }}
+	{{ Form::open ( array('url'=>'matches/confirm', 'method'=>'POST')) }}
 
 	<table class ="table table-striped table-bordered table-condensed">
 		<tr>
