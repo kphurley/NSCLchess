@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-	<h1>Players Home Page</h1>
+	<h1>NSCL - Match List</h1>
 
 	<table class = "table table-striped table-bordered table-condensed">
 		<tr>
