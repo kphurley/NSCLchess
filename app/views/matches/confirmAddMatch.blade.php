@@ -1,6 +1,16 @@
 @extends('layouts.default')
 
 @section('content')
+
+<!-- Bootstrap core CSS -->
+	    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	    <!-- Custom styles for this template -->
+	    <link href="../css/grid.css" rel="stylesheet">
+
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+	    
 <div class = "container">
 <h4>LOOK AT THIS CAREFULLY AND CHECK TO MAKE SURE THIS INFO IS CORRECT!</h4></div>
 

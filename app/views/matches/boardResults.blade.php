@@ -1,10 +1,28 @@
 @extends('layouts.default')
 
 @section('content')
+
+<!-- Bootstrap core CSS -->
+	    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	    <!-- Custom styles for this template -->
+	    <link href="../css/grid.css" rel="stylesheet">
+
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
 	
 	<h1>{{$home}}  vs.  {{$visitor}} - {{$season}}</h1>
 
+	<div class = "container">
+		Directions:  Indicate who played what board from the dropdown list of players.
+		Then indicate who won by putting a check in the box next to the player who won.
+		In the case of a draw, you can either leave both boxes in a row unchecked OR
+		check both boxes.  The score will be automatically tallied for you.  On the NEXT
+		screen, you will be able to double-check your match result against your score sheet
+		for accuracy.
+	</div>
 
+	<br>
 
 	{{ Form::open ( array('url'=>'matches/confirm', 'method'=>'POST')) }}
 

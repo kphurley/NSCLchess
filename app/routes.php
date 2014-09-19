@@ -22,8 +22,8 @@ Route::get('users/dashboard', array('as'=> 'dashboard', 'uses' => 'UsersControll
 
 // Player routes
 Route::get('players', array('as'=> 'players', 'uses' => 'PlayersController@showPlayers'));
-Route::get('players/new', array('as'=>'new_player','uses'=>'PlayersController@addNewPlayer'));
-Route::post('players/create', array('uses'=>'PlayersController@createPlayer'));
+Route::get('players/new', array('before' => 'auth','as'=>'new_player','uses'=>'PlayersController@addNewPlayer'));
+Route::post('players/create', array('before' => 'auth', 'uses'=>'PlayersController@createPlayer'));
 
 // Team routes
 Route::get('teams', array('as'=> 'teams', 'uses' => 'TeamsController@showTeams'));
@@ -31,9 +31,17 @@ Route::get('team/{id}', array('as'=>'team', 'uses' => 'TeamsController@viewTeam'
 
 // Match routes
 Route::get('matches', array('as'=>'matches', 'uses'=>'MatchesController@showMatches'));
-Route::get('matches/add', array('as'=>'add_match', 'uses'=>'MatchesController@addNewMatch'));
-Route::post('matches/add2', array('uses'=>'MatchesController@addNewMatchWithTeams'));
+Route::get('matches/add', array('before' => 'auth','as'=>'add_match', 'uses'=>'MatchesController@addNewMatch'));
+Route::post('matches/add2', array('before' => 'auth','uses'=>'MatchesController@addNewMatchWithTeams'));
 Route::get('match/{id}', array('as'=>'match', 'uses' => 'MatchesController@viewMatch'));
-Route::post('matches/create', array('uses'=>'MatchesController@confirmAddMatch'));
-Route::post('matches/confirm', array('as'=>'confirmMatch','uses'=>'MatchesController@createMatch'));
+Route::post('matches/create', array('before' => 'auth','uses'=>'MatchesController@confirmAddMatch'));
+Route::post('matches/confirm', array('before' => 'auth', 'as'=>'confirmMatch','uses'=>'MatchesController@createMatch'));
 
+//Announcement routes
+Route::get('announcement/{id}', array('as'=>'announcement', 'uses'=>'AnnouncementsController@viewNews'));
+Route::get('announcements/add', array('before' => 'auth', 'as'=>'add_announcement', 'uses'=>'AnnouncementsController@addNews'));
+Route::post('announcements/create', array('before' => 'auth', 'uses'=>'AnnouncementsController@createNews'));
+Route::get('announcements/viewAll', array('as'=>'view_all_announcements', 'uses'=>'AnnouncementsController@viewAllNews'));
+
+//schedule routes
+Route::get('schedule', array('as'=> 'schedule', 'uses' => 'ScheduleController@viewCompleteSchedule'));

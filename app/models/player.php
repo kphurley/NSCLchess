@@ -6,7 +6,8 @@ class Player extends Eloquent {
 
 	protected $guarded = array('id');
 
-	public static $rules = array(
-    'name'=>'required|min:2|unique:players',
-    );
+	//public static $rules = array(
+    //'firstName'=>'required|min:2|unique:players',
+    //'lastName'=>'required|min:2|unique:players'
+   // );
 }

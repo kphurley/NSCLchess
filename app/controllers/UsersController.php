@@ -25,6 +25,7 @@ class UsersController extends BaseController {
 	        $user = new User;
 		    $user->firstname = Input::get('firstname');
 		    $user->lastname = Input::get('lastname');
+		    $user->school = Input::get('school');
 		    $user->email = Input::get('email');
 		    $user->password = Hash::make(Input::get('password'));
 		    $user->save();
@@ -51,8 +52,18 @@ class UsersController extends BaseController {
 	}
 
 	public function getDashboard(){
+
+		$currentUser = Auth::user()->school;
+		$team = Team::where('school', '=', $currentUser)->first();
+		$players = Player::whereNotNull('school')
+			->orderBy('league_points', 'DESC')
+			->get();
+
 		return View::make('users.dashboard')
-				->with('title', 'NSCL Coach Dashboard');
+				->with('title', 'NSCL Coach Dashboard')
+				->with('players', $players)
+				->with('schedule', Schedule::all())
+				->with('team', $team);
 	}
 
 	public function logoutUser(){

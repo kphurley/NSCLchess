@@ -2,6 +2,15 @@
 
 @section('content')
 
+<!-- Bootstrap core CSS -->
+	    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	    <!-- Custom styles for this template -->
+	    <link href="../css/grid.css" rel="stylesheet">
+
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+
 	<h1>Add New NSCL Match</h1>
 
 	{{ Form::open ( array('url'=>'matches/add2', 'method'=>'POST')) }}
@@ -56,7 +65,7 @@
 	<p>
 		{{ Form::label('season', 'Season:')}}
 		{{ Form::select('season', array(
-			'2013-2014'=>'2013-2014')) }}
+			'2014-2015'=>'2014-2015')) }}
 	</p>
 	
 

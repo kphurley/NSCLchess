@@ -3,9 +3,13 @@
 ?>
 
 <?php if ($paginator->getLastPage() > 1): ?>
-	<div class="pagination">
-		<ul>
+	<ul class="pagination">
+	  <?php echo $presenter->render(); ?>
+	</ul>
+
+	<!--<div class="pagination">
+		<ul class = "nav navbar-nav">
 			<?php echo $presenter->render(); ?>
 		</ul>
-	</div>
+	</div>-->
 <?php endif; ?>

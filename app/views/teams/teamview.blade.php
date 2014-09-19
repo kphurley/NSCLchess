@@ -3,6 +3,16 @@
 
 
 @section('content')
+
+<!-- Bootstrap core CSS -->
+	    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	    <!-- Custom styles for this template -->
+	    <link href="../css/grid.css" rel="stylesheet">
+
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+	    
 	<h1>{{ $team->school }}</h1>
 
 	<table class = "table table-bordered table-striped table-condensed">
@@ -34,6 +44,8 @@
 
 	@endforeach
 	</table>
+
+	
 	
 	
 @stop

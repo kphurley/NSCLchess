@@ -333,25 +333,48 @@ class MatchesController extends BaseController{
 		}
 		
 		//------------------------Populate array of board scores-------------------
-		$i = 0;
-		for($i = 0; $i <8; $i++){
-			$homeBoardWins[$i] = 0.0;
-			foreach($homeBoardScorers as $hScorer){
-				if(($hScorer-1) == $i) {
-					$homeBoardWins[$i] = 1.0;					
-				}
-			}				
+		
+		if($homeBoardScorers == 0)  //home team was shutout
+		{
+			for($i = 0; $i <8; $i++)
+			{
+				$visBoardWins[$i] = 1.0;
+				$homeBoardWins[$i] = 0.0;
+			}
 		}
 
-		$i = 0;
-		for($i = 0; $i <8; $i++){
-			$visBoardWins[$i] = 0.0;
-			foreach($visBoardScorers as $vScorer){
-				if(($vScorer-1) == $i) {
-					$visBoardWins[$i] = 1.0;					
-				}
-			}				
+		else if($visBoardScorers == 0)  //visiting team was shutout
+		{
+			for($i = 0; $i <8; $i++)
+			{
+				$homeBoardWins[$i] = 1.0;
+				$visBoardWins[$i] = 0.0;
+			}
 		}
+
+		else  //both teams scored
+		{
+			$i = 0;
+			for($i = 0; $i <8; $i++){
+				$homeBoardWins[$i] = 0.0;
+				foreach($homeBoardScorers as $hScorer){
+					if(($hScorer-1) == $i) {
+						$homeBoardWins[$i] = 1.0;					
+					}
+				}				
+			}
+
+			$i = 0;
+			for($i = 0; $i <8; $i++){
+				$visBoardWins[$i] = 0.0;
+				foreach($visBoardScorers as $vScorer){
+					if(($vScorer-1) == $i) {
+						$visBoardWins[$i] = 1.0;					
+					}
+				}				
+			}
+		}
+		
 
 		//Handle draws, and then compute board score for each board
 		$i = 0;

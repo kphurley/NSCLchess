@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-	<h1>Players Home Page</h1>
+	<h1>Player Statistics</h1>
 
 	<table class = "table table-striped table-bordered table-condensed sortable">
 		<thead><tr>
@@ -29,6 +29,10 @@
 	@endforeach
 </tbody>
 	</table>
+
+	
+	<?php echo $players->links(); ?>
+	<br>
 
 	@if(Auth::check())
         {{ link_to_route('new_player', 'Add New Player', null, array('class'=>'btn btn-large btn-primary'))  }}   

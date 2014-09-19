@@ -1,15 +1,30 @@
 @extends('layouts.default')
 
 @section('content')
+
+<!-- Bootstrap core CSS -->
+	    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	    <!-- Custom styles for this template -->
+	    <link href="../css/grid.css" rel="stylesheet">
+
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
 	
 	<h1>Add New NSCL Player</h1>
 
 	{{ Form::open ( array('url'=>'players/create', 'method'=>'POST')) }}
 
 	<p>
-		{{ Form::label('name', 'Name:')}}
-		{{ Form::text('name')}}
+		{{ Form::label('Fname', 'First Name:')}}
+		{{ Form::text('firstName')}}
 	</p>
+
+	<p>
+		{{ Form::label('Lname', 'Last Name:')}}
+		{{ Form::text('lastName')}}
+	</p>
+
 
 	<p>
 		{{ Form::label('Grade', 'Grade:')}}

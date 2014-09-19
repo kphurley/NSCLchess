@@ -1,6 +1,16 @@
 @extends('layouts.default')
 
 @section('content')
+
+<!-- Bootstrap core CSS -->
+	    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+	    <!-- Custom styles for this template -->
+	    <link href="../css/grid.css" rel="stylesheet">
+
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+
 	<div class = "container">
 	<h3>{{$match->season}} Season Match Results:</h3>	
 	<h1>{{$match->homeschool}}: {{$match->homepoints}}, {{$match->visitorschool}}: {{$match->visitorpoints}}</h1> 

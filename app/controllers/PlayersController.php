@@ -5,12 +5,17 @@ class PlayersController extends BaseController {
 	//public $restful = true;
 
 	public function showPlayers(){
-		$players = Player::whereNotNull('school')->get();
+		$players = Player::whereNotNull('school')
+		->orderBy('league_points', 'DESC')
+		->paginate(15);
+
+		
 
 
 		$view = View::make('players.players')
 			->with('title', 'NSCL Player List')
 			->with('players', $players);
+
 
 		return $view;
 	}
@@ -21,21 +26,44 @@ class PlayersController extends BaseController {
 
 	public function createPlayer(){
 
-		$validator = Validator::make(Input::all(), Player::$rules);
+		$firstName = Input::get('firstName');
+		$space = ' ';
+		$lastName = Input::get('lastName');
+
+		$team = Team::where('school', Input::get('school'))->first();
+
+		$name = $firstName.$space.$lastName;
+
+		//$validator = Validator::make(Input::all(), Player::$rules);
  
-	    if ($validator->passes()) {
+	    //if ($validator->passes()) {
 	        // validation has passed, save user in DB
 	       Player::create(array(
-			'name'=>Input::get('name'),
+			'firstName'=>Input::get('firstName'),
+			'lastName'=>Input::get('lastName'),
+			'name'=>$name,
 			'school'=>Input::get('school'),
 			'Grade'=>Input::get('Grade')
 		));
 
-	    return Redirect::route('players')
+	       
+		//return Redirect::route('users.courses.forums.index', 
+                            //array(Auth::user()->username, $course->id));
+
+	    if(Auth::check())
+	    	{
+	    		return Redirect::route('dashboard')
+				->with('message', 'Player created successfully');
+			}
+
+	    else
+	    	{
+	    		return Redirect::route('team', array($team->id))
 			->with('message', 'Player created successfully');
 		}
+		
 
-	   	else return Redirect::route('new_player')->with('message', 'Error creating player:  Player has already been created!');
+	   	//else return Redirect::route('new_player')->with('message', 'Error creating player:  Player has already been created!');
 	}
 
 	public function viewPlayer($id){
