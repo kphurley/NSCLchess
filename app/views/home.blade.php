@@ -6,7 +6,7 @@
 
 	<div class="container">
 		<div class = "row">
-			<div class = "col-md-8">
+			
 						
 				<h1>{{ $mostRecentNews-> title }}</h1>
 				<h6>Posted by {{$mostRecentNews -> author}}</h6>
@@ -43,10 +43,10 @@
 			
 			</div>
 						
-		</div>
+		
 
 		<div class = "row">
-			<div class = "col-md-8">
+			
 
 				<div class="bs-docs-section">
  
@@ -152,6 +152,7 @@
 			</div>
 
       <div class="tab-pane fade" id="profile2">
+
       			<table class = "table table-bordered table-striped table-condensed sortable">
 								<thead>
 								<tr>
@@ -184,7 +185,7 @@
 
 					<?php echo $schedule->links(); ?>
 
-				</div>
+				</div>  
 
       <div class="tab-pane fade" id="profile3">
       		<table class = "table table-striped table-bordered table-condensed">
@@ -209,7 +210,7 @@
 					</div>
      
     </div>
-  </div></div></div></div>
+  </div></div></div>
 
   <h6> Website design courtesy of Bootstrap, Bootswatch-Flatly, Laravel, and Kevin Hurley </h6>
 

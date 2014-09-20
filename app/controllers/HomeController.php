@@ -24,7 +24,7 @@ class HomeController extends BaseController {
 
 		$matches = Match::whereNotNull('id')->orderBy('id')->paginate(15);
 
-		$schedule = Schedule::whereNotNull('date')->orderBy('id')->paginate(15);
+		$schedule = Schedule::whereNotNull('id')->orderBy('id')->paginate(15);
 
 		return View::make('home')
 			->with('title','Welcome to the North Suburban Chess League website')
