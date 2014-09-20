@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => $_ENV['LARAVEL_APPLICATION_KEY'],
+	'key' => 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
 
 	/*
 	|--------------------------------------------------------------------------
