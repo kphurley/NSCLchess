@@ -14,6 +14,7 @@ class TeamsController extends BaseController {
 		return View::make('teams.teamview')
 			->with('title', 'NSCL Team')
 			->with('team', Team::find($id))
+			->with('schedule', Schedule::all())
 			->with('players', Player::all());
 		
 	}
