@@ -9,7 +9,9 @@ class RemindersController extends Controller {
 	 */
 	public function getRemind()
 	{
-		return View::make('password.remind');
+		return View::make('password.remind')
+		->with('title','Send Password Reminder')
+		->with('teams',Team::all());
 	}
 
 	/**

@@ -18,7 +18,10 @@
     <br>
     {{ Form::password('password', array('class'=>'input-block-level', 'placeholder'=>'Password')) }}
  	<br>
+
     {{ Form::submit('Login', array('class'=>'btn btn-primary btn-lg'))}}
+    <br>
+     	
 	{{ Form::close() }}
 
 

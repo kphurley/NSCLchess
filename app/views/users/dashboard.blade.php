@@ -32,7 +32,9 @@
 							<th>Losses</th>
 							<th>Draws</th>
 							<th>Points</th>
-							<th>Pct of Pts Won</th>
+							<th>Pct</th>
+							<th></th>
+							
 						</tr>
 
 					@foreach($players as $player)
@@ -46,6 +48,59 @@
 							<td>{{ $player -> league_draws }}</td>
 							<td>{{ $player -> league_points }}</td>
 							<td>{{ $player -> league_pt_pct }}</td>
+							
+
+							<td>
+								<div class="dropdown">
+									<button class="btn btn-primary btn-xs" type="button" id="dropdownMenu1" data-toggle="dropdown">
+									    Edit
+									    <span class="caret"></span>
+									</button>
+									  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+
+									  		
+											{{ Form::open ( array('url'=>'players/edit', 'method'=>'POST', 'class'=>'form-inline')) }}
+											  
+											    {{ Form::hidden('id', $player->id) }}
+
+											    <legend>Edit player:</legend>
+											    
+											      {{ Form::label('Fname', 'First Name:')}}
+											      									        
+											        {{ Form::text('firstName')}}
+
+											        {{ Form::label('Lname', 'Last Name:')}}
+											      
+											        {{ Form::text('lastName')}}
+											    
+													<br>
+													{{ Form::label('Grade', 'Grade:')}}
+													{{ Form::select('Grade', array(
+														9=>9,
+														10=>10,
+														11=>11,
+														12=>12))
+													}}
+													<br>
+													<br>
+
+										
+													{{ Form::hidden('school', $team->school) }}
+
+												
+										
+
+													<p>
+														{{ Form::submit('Edit Player') }}
+													</p>
+
+													{{ Form::close() }}
+
+									    
+									  </ul>
+								</div>
+							</td>
+
 						</tr>
 						@endif
 
@@ -81,6 +136,8 @@
      
     </div>
   </div>
+
+  <p>Points = total points won for team, Pct = percentage of points won versus possible points</p>
 
 <!--{{ link_to_route('new_player', 'Add New Player', null, array('class'=>'btn btn-default btn-lg btn-block')) }}-->
 

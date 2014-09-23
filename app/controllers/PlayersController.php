@@ -66,6 +66,37 @@ class PlayersController extends BaseController {
 	   	//else return Redirect::route('new_player')->with('message', 'Error creating player:  Player has already been created!');
 	}
 
+	public function editPlayer()
+	{
+		$thisPlayerID = Input::get('id');
+		$thisPlayer = Player::find($thisPlayerID);
+
+		$firstName = Input::get('firstName');
+		$space = ' ';
+		$lastName = Input::get('lastName');
+
+		$name = $firstName.$space.$lastName;
+
+		$thisPlayer->firstName = $firstName;
+		$thisPlayer->save();
+		$thisPlayer->lastName = $lastName;
+		$thisPlayer->save();
+		$thisPlayer->name= $name;
+		$thisPlayer->save();
+		$thisPlayer->Grade = Input::get('Grade');
+		$thisPlayer->save();
+
+		return Redirect::route('dashboard')
+				->with('message', 'Player edited successfully');
+	}
+
+	public function deletePlayer()
+	{
+		
+	}
+
+	
+
 	public function viewPlayer($id){
 		return View::make('player.playerview')
 			->with('title', 'NSCL Player')

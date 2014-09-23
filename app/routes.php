@@ -24,6 +24,8 @@ Route::get('users/dashboard', array('as'=> 'dashboard', 'uses' => 'UsersControll
 Route::get('players', array('as'=> 'players', 'uses' => 'PlayersController@showPlayers'));
 Route::get('players/new', array('before' => 'auth','as'=>'new_player','uses'=>'PlayersController@addNewPlayer'));
 Route::post('players/create', array('before' => 'auth', 'uses'=>'PlayersController@createPlayer'));
+Route::post('players/edit', array('before' => 'auth', 'uses'=>'PlayersController@editPlayer'));
+Route::post('players/delete', array('before' => 'auth', 'uses'=>'PlayersController@deletePlayer'));
 
 // Team routes
 Route::get('teams', array('as'=> 'teams', 'uses' => 'TeamsController@showTeams'));
@@ -45,3 +47,6 @@ Route::get('announcements/viewAll', array('as'=>'view_all_announcements', 'uses'
 
 //schedule routes
 Route::get('schedule', array('as'=> 'schedule', 'uses' => 'ScheduleController@viewCompleteSchedule'));
+
+Route::get('password/remind', array('as'=>'password_remind','uses'=>'RemindersController@getRemind'));
+Route::post('password/sendReminder', array('uses'=>'RemindersController@postRemind'));
