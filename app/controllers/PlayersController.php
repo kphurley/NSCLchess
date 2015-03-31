@@ -6,7 +6,7 @@ class PlayersController extends BaseController {
 
 	public function showPlayers(){
 		$players = Player::whereNotNull('school')
-		->sortable()
+		->orderBy('league_points', 'DESC')
 		->paginate(15);
 
 		

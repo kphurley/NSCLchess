@@ -13,7 +13,6 @@
 
 Route::get('/', array('as'=> 'home', 'uses' => 'HomeController@showWelcome'));
 
-
 Route::get('users/login', array('as'=> 'login', 'uses' => 'UsersController@showLogin'));
 Route::get('users/register', array('as'=> 'register', 'uses' => 'UsersController@showRegistration'));
 Route::post('users/create', array('as'=> 'create_user', 'uses' => 'UsersController@createUser'));

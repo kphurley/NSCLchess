@@ -5,9 +5,7 @@
 	<h1>Welcome to the North Suburban Chess League</h1>	
 
 	<div class="container">
-		
-			<div class="row">
-				<div class="col-md-6 nostyle-table-container">
+		<div class = "row">
 			
 						
 				<h1>{{ $mostRecentNews-> title }}</h1>
@@ -43,37 +41,36 @@
 
 				<ul>{{ link_to_route('view_all_announcements', 'View All League News') }}</ul>
 			
-			</div></div>
+			</div>
 						
 		
-			<div class="row">
-				<div class="col-md-6 nostyle-table-container">
-		
+
+		<div class = "row">
 			
+
 				<div class="bs-docs-section">
  
-				  <div class="bs-example bs-example-tabs">
-				    <ul id="myTab" class="nav nav-tabs" role="tablist">
-				      <li class="active"><a href="#home" role="tab" data-toggle="tab">North Standings</a></li>
-				      <li><a href="#profile" role="tab" data-toggle="tab">South Standings</a></li>
-				      <li><a href="#profile1" role="tab" data-toggle="tab">Top Players</a></li>
-				      <li><a href="#profile2" role="tab" data-toggle="tab">Schedule</a></li>
-				      <li><a href="#profile3" role="tab" data-toggle="tab">Recent Results</a></li>
-				    </ul>
-			    <div id="myTabContent" class="tab-content">
-			      <div class="tab-pane fade in active" id="home">
-			        <table class = "table table-bordered table-striped table-condensed sortable">
-								<thead>
-								<tr>
-									<th>North Division</th>
-									<th>{{ SortableTrait::link_to_sorting_action('league_wins', 'Wins') }}</th>
-									<th>{{ SortableTrait::link_to_sorting_action('league_losses', 'Losses') }}</th>
-									<th>{{ SortableTrait::link_to_sorting_action('league_draws', 'Draws') }}</th>
-									<th>{{ SortableTrait::link_to_sorting_action('win_pct', 'Win Pct') }}</th>
-									<th>{{ SortableTrait::link_to_sorting_action('league_points', 'Points') }}</th>
-								
-								</tr>
-								</thead>
+  <div class="bs-example bs-example-tabs">
+    <ul id="myTab" class="nav nav-tabs" role="tablist">
+      <li class="active"><a href="#home" role="tab" data-toggle="tab">North Standings</a></li>
+      <li><a href="#profile" role="tab" data-toggle="tab">South Standings</a></li>
+      <li><a href="#profile1" role="tab" data-toggle="tab">Top Players</a></li>
+      <li><a href="#profile2" role="tab" data-toggle="tab">Schedule</a></li>
+      <li><a href="#profile3" role="tab" data-toggle="tab">Recent Results</a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade in active" id="home">
+        <table class = "table table-bordered table-striped table-condensed sortable">
+					<thead>
+					<tr>
+						<th>North Division</th>
+						<th>Wins</th>
+						<th>Losses</th>
+						<th>Draws</th>
+						<th>Points</th>
+					
+					</tr>
+					</thead>
 				
 				<tbody>
 				@foreach($teams as $team)
@@ -84,7 +81,6 @@
 								<td>{{ $team -> league_wins }}</td>
 								<td>{{ $team -> league_losses }}</td>
 								<td>{{ $team -> league_draws }}</td>
-								<td>{{ $team -> win_pct }}</td>
 								<td>{{ $team -> league_points }}</td>
 							</tr>
 						@endif
@@ -99,11 +95,10 @@
 					<thead>
 					<tr>
 						<th>South Division</th>
-						<th>{{ SortableTrait::link_to_sorting_action('league_wins', 'Wins') }}</th>
-						<th>{{ SortableTrait::link_to_sorting_action('league_losses', 'Losses') }}</th>
-						<th>{{ SortableTrait::link_to_sorting_action('league_draws', 'Draws') }}</th>
-						<th>{{ SortableTrait::link_to_sorting_action('win_pct', 'Win Pct') }}</th>
-						<th>{{ SortableTrait::link_to_sorting_action('league_points', 'Points') }}</th>
+						<th>Wins</th>
+						<th>Losses</th>
+						<th>Draws</th>
+						<th>Points</th>
 					</tr>
 				</thead>
 
@@ -116,7 +111,6 @@
 								<td>{{ $team -> league_wins }}</td>
 								<td>{{ $team -> league_losses }}</td>
 								<td>{{ $team -> league_draws }}</td>
-								<td>{{ $team -> win_pct }}</td>
 								<td>{{ $team -> league_points }}</td>
 							</tr>
 						@endif
@@ -147,14 +141,14 @@
 							<td>{{ $player -> league_losses }}</td>
 							<td>{{ $player -> league_draws }}</td>
 							<td>{{ $player -> league_points }}</td>
-							<td>{{ number_format($player -> league_pt_pct ,3)}}</td>
+							<td>{{ $player -> league_pt_pct }}</td>
 						</tr>
 					@endforeach
 				</tbody>
 					</table>
 
 					
-					
+					<?php echo $players->links(); ?>
 			</div>
 
       <div class="tab-pane fade" id="profile2">
@@ -216,7 +210,7 @@
 					</div>
      
     </div>
-  </div></div></div></div>
+  </div></div></div>
 
   <h6> Website design courtesy of Bootstrap, Bootswatch-Flatly, Laravel, and Kevin Hurley </h6>
 
