@@ -2,7 +2,8 @@
 
 @section('content')
 	<h1>NSCL - Match List</h1>
-
+    <div class="row">
+		<div class="col-md-8 nostyle-table-container">
 	<table class = "table table-striped table-bordered table-condensed">
 		<tr>
 			<th></th>
@@ -22,7 +23,7 @@
 		</tr>
 	@endforeach
 	</table>
-	
+	</div></div>
 	@if(Auth::check())
         {{ link_to_route('add_match', 'Add New Match', null, array('class'=>'btn btn-large btn-primary')) }}  
                     
