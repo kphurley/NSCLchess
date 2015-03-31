@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<h1>Welcome to the North Suburban Chess League</h1>	
+	<h1>North Suburban Chess League</h1>	
 
 	<div class="container">
 		
