@@ -20,7 +20,7 @@
 	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
     	
-
+      <link href="css/main.css" rel="stylesheet">
   
   	</head>
 
@@ -114,6 +114,7 @@
 
 	
 	<div class = "container">
+    
 
 		
 		@if(Session::has('message'))
@@ -127,6 +128,7 @@
     	{{ HTML::script('js/bootstrap-sortable.js') }}
     	{{ HTML::script('js/moment-min.js') }}
 
+    
 	</div>
 
 	<script>

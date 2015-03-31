@@ -3,16 +3,19 @@
 @section('content')
 	<h1>Player Statistics</h1>
 
+	<div class="row">
+				<div class="col-md-8 nostyle-table-container">
+
 	<table class = "table table-striped table-bordered table-condensed sortable">
 		<thead><tr>
 			<th>Name</th>
 			<th>School</th>
-			<th>Grade</th>
-			<th>Wins</th>
-			<th>Losses</th>
-			<th>Draws</th>
-			<th>Points</th>
-			<th>Pct</th>
+			<th>{{ SortableTrait::link_to_sorting_action('Grade', 'Grade') }}</th>
+			<th>{{ SortableTrait::link_to_sorting_action('league_wins', 'Wins') }}</th>
+			<th>{{ SortableTrait::link_to_sorting_action('league_losses', 'Losses') }}</th>
+			<th>{{ SortableTrait::link_to_sorting_action('league_draws', 'Draws') }}</th>
+			<th>{{ SortableTrait::link_to_sorting_action('league_points', 'Points') }}</th>
+			<th>{{ SortableTrait::link_to_sorting_action('league_pt_pct', 'Pct') }}</th>
 		</tr></thead>
 <tbody>
 	@foreach($players as $player)
@@ -24,14 +27,14 @@
 			<td>{{ $player -> league_losses }}</td>
 			<td>{{ $player -> league_draws }}</td>
 			<td>{{ $player -> league_points }}</td>
-			<td>{{ $player -> league_pt_pct }}</td>
+			<td>{{ number_format($player -> league_pt_pct ,3)}}</td>
 		</tr>
 	@endforeach
 </tbody>
 	</table>
-
+</div></div>
 	
-	<?php echo $players->links(); ?>
+	{{ $players->appends(Input::except('page'))->links() }}
 	<br>
 
 	@if(Auth::check())

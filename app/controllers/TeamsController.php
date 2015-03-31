@@ -5,7 +5,7 @@ class TeamsController extends BaseController {
 	public function showTeams(){
 		$view = View::make('teams.teams')
 			->with('title', 'NSCL Player List')
-			->with('teams', Team::all());  
+			->with('teams', Team::sortable()->get());  
 			
 		return $view;
 	}
@@ -15,7 +15,8 @@ class TeamsController extends BaseController {
 			->with('title', 'NSCL Team')
 			->with('team', Team::find($id))
 			->with('schedule', Schedule::all())
-			->with('players', Player::all());
+			->with('players', Player::sortable()->get())
+			->with('matches', Match::all());
 		
 	}
 }

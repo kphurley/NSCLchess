@@ -15,6 +15,10 @@ class HomeController extends BaseController {
 	|
 	*/
 
+	//put reused variables here to clean code up?
+	//
+	//end of variables
+
 	public function showWelcome()
 	{
 
@@ -30,11 +34,14 @@ class HomeController extends BaseController {
 			->with('title','Welcome to the North Suburban Chess League website')
 			->with('announcements', Announcement::orderBy('updated_at', 'desc')->take(3)->get())
 			->with('mostRecentNews', Announcement::orderBy('updated_at', 'desc')->first())
-			->with('teams',Team::all())
+			//->with('teams',Team::all())
+			->with('teams',Team::sortable()->get())
 			->with('schedule', $schedule)
-			->with('matches', $matches)
-			->with('players', $players);
+			->with('matches', Match::orderBy('id', 'desc')->take(12)->get())
+			->with('players', Player::whereNotNull('school')->orderBy('league_points', 'desc')->take(12)->get());
 			
 	}
+
+	
 
 }
