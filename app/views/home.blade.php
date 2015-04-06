@@ -2,22 +2,27 @@
 
 @section('content')
 
-	<h1>North Suburban Chess League</h1>	
-
 	<div class="container">
 		
-			<div class="row">
-				<div class="col-md-6 nostyle-table-container">
-			
-						
-				<h1>{{ $mostRecentNews-> title }}</h1>
-				<h6>Posted by {{$mostRecentNews -> author}}</h6>
-				<br>
-				{{ $mostRecentNews-> contents }}
+			<div class="well">
+				<!-- Most recent news section -->
 
-				<h4>More Recent News:</h4>
+					<h1>{{ $mostRecentNews-> title }}</h1>
+					<h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted by {{$mostRecentNews -> author}}</h6>
+					<br>
+					{{ $mostRecentNews-> contents }}
+  
+			</div>
+				
+			<div class="panel panel-primary">
 
-				<?php $i = 1 ?>
+				<div class="panel-heading">
+					<h3 class="panel-title">Most Recent News</h3>
+				</div>
+
+  				<div class="panel-body">
+    				<!-- Other recent news link area -->
+       			<?php $i = 1 ?>
 
 				@foreach($announcements as $news)
 					
@@ -42,12 +47,21 @@
 				@endforeach
 
 				<ul>{{ link_to_route('view_all_announcements', 'View All League News') }}</ul>
-			
-			</div></div>
-						
+
+        	
+  				</div>
+			</div>	<!--end of first row/news area-->
+        		
+        						
 		
-			<div class="row">
-				<div class="col-md-6 nostyle-table-container">
+			<div class="panel panel-primary">
+
+				<div class="panel-heading">
+					<h3 class="panel-title">League Statistics and Results</h3>
+				</div>
+
+  				<div class="panel-body">
+				
 		
 			
 				<div class="bs-docs-section">
@@ -57,14 +71,13 @@
 				      <li class="active"><a href="#home" role="tab" data-toggle="tab">North Standings</a></li>
 				      <li><a href="#profile" role="tab" data-toggle="tab">South Standings</a></li>
 				      <li><a href="#profile1" role="tab" data-toggle="tab">Top Players</a></li>
-				      <li><a href="#profile2" role="tab" data-toggle="tab">Schedule</a></li>
 				      <li><a href="#profile3" role="tab" data-toggle="tab">Recent Results</a></li>
 				    </ul>
 			    <div id="myTabContent" class="tab-content">
 			      <div class="tab-pane fade in active" id="home">
-			        <table class = "table table-bordered table-striped table-condensed sortable">
+			        <table class = "table table-bordered table-striped table-hover sortable">
 								<thead>
-								<tr>
+								<tr class="info">
 									<th>North Division</th>
 									<th>{{ SortableTrait::link_to_sorting_action('league_wins', 'Wins') }}</th>
 									<th>{{ SortableTrait::link_to_sorting_action('league_losses', 'Losses') }}</th>
@@ -95,9 +108,9 @@
 				</table>
       </div>
       <div class="tab-pane fade" id="profile">
-        <table class = "table table-bordered table-striped table-condensed sortable">
+        <table class = "table table-bordered table-striped table-hover sortable">
 					<thead>
-					<tr>
+					<tr class="info">
 						<th>South Division</th>
 						<th>{{ SortableTrait::link_to_sorting_action('league_wins', 'Wins') }}</th>
 						<th>{{ SortableTrait::link_to_sorting_action('league_losses', 'Losses') }}</th>
@@ -128,8 +141,9 @@
 
       <div class="tab-pane fade" id="profile1">
 	      			
-					<table class = "table table-striped table-bordered table-condensed sortable">
-						<thead><tr>
+					<table class = "table table-striped table-bordered table-hover sortable">
+						<thead>
+							<tr class="info">
 							<th>Name</th>
 							<th>School</th>
 							<th>Wins</th>
@@ -153,49 +167,17 @@
 				</tbody>
 					</table>
 
+					{{ link_to_route('players', 'More Player Statistics', null, array('class'=>'btn btn-primary')) }}
+
 					
 					
 			</div>
 
-      <div class="tab-pane fade" id="profile2">
-
-      			<table class = "table table-bordered table-striped table-condensed sortable">
-								<thead>
-								<tr>
-									
-									<th>Date</th>
-									<th>White</th>
-									<th>Black</th>
-									<th>Location</th>
-								
-								</tr>
-								</thead>
-							
-							<tbody>
-							@foreach($schedule as $match)
-								
-									
-									<tr>
-										
-										<td>{{ $match -> Date }}</td>
-										<td>{{ $match -> white }}</td>
-										<td>{{ $match -> black }}</td>
-										<td>{{ $match -> location }}</td>
-									</tr>
-									
-								
-							@endforeach
-							</tbody>
-
-					</table>
-
-					<?php echo $schedule->links(); ?>
-
-				</div>  
+      
 
       <div class="tab-pane fade" id="profile3">
-      		<table class = "table table-striped table-bordered table-condensed">
-							<tr>
+      		<table class = "table table-striped table-bordered table-hover">
+							<tr class="info">
 								<th></th>
 								<th>Home (White)</th>
 								<th>H pt</th>
@@ -213,13 +195,19 @@
 							</tr>
 						@endforeach
 						</table>
+
+						{{ link_to_route('matches', 'More Match Results', null, array('class'=>'btn btn-primary')) }}
+
 					</div>
      
     </div>
   </div></div></div></div>
 
+
+  </div>
+
   <h6> Website design courtesy of Bootstrap, Bootswatch-Flatly, Laravel, and Kevin Hurley </h6>
 
-		
+	</div>	
 		
 @stop
