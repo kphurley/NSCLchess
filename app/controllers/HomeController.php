@@ -35,7 +35,7 @@ class HomeController extends BaseController {
 			->with('announcements', Announcement::orderBy('updated_at', 'desc')->take(3)->get())
 			->with('mostRecentNews', Announcement::orderBy('updated_at', 'desc')->first())
 			//->with('teams',Team::all())
-			->with('teams',Team::sortable()->get())
+			->with('teams',Team::sortable()->orderBy('win_pct', 'desc')->get())
 			->with('schedule', $schedule)
 			->with('matches', Match::orderBy('id', 'desc')->take(12)->get())
 			->with('players', Player::whereNotNull('school')->orderBy('league_points', 'desc')->take(12)->get());
