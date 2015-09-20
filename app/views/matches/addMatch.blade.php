@@ -27,7 +27,7 @@
 			'Highland Park' => 'Highland Park',
 			'Lake Forest' => 'Lake Forest',
 			'Maine South' => 'Maine South',
-			'Maine West' => 'Maine West',
+			'Maine East' => 'Maine East',
 			'Mundelein' => 'Mundelein',
 			'New Trier' => 'New Trier',
 			'Niles West' => 'Niles West',
@@ -51,7 +51,7 @@
 			'Highland Park' => 'Highland Park',
 			'Lake Forest' => 'Lake Forest',
 			'Maine South' => 'Maine South',
-			'Maine West' => 'Maine West',
+			'Maine East' => 'Maine East',
 			'Mundelein' => 'Mundelein',
 			'New Trier' => 'New Trier',
 			'Niles West' => 'Niles West',
@@ -65,7 +65,7 @@
 	<p>
 		{{ Form::label('season', 'Season:')}}
 		{{ Form::select('season', array(
-			'2014-2015'=>'2014-2015')) }}
+			'2015-2016'=>'2015-2016')) }}
 	</p>
 	
 

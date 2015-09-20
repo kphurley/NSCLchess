@@ -20,7 +20,7 @@
 	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
     	
-
+    <link href="css/main.css" rel="stylesheet">
   
   	</head>
 
@@ -94,7 +94,26 @@
         @if(Auth::check())
           <li>{{ link_to_route('dashboard', 'Coach Dashboard')}}</li>
         @endif
+
+      <!-- THIS CODE WILL EVENTUALLY BE FOR SELECTING THE SEASON. 
+      AT THE MOMENT I DON'T HAVE A GOOD WAY TO MAKE IT WORK WITH ELOQUENT MODELS IN LARAVEL
+      THIS MAY BE SOMETHING TO LOOK AT DOING WHEN I EVENTUALLY MIGRATE TO A DIFFERENT FRAMEWORK 
+        <form class="navbar-form navbar-left" method="get">
+
       
+      <div class="form-group">
+      
+
+        <select class="form-control" id="select" onchange="location = this.options[this.selectedIndex].value;">
+          <option value = "changeSeasonCurrent">Current Season</option>
+          <option value = "changeSeason2014">2014-2015 Season</option>
+        </select>
+        
+      </div>
+        </form>
+      -->
+
+             
       </ul>  
 
       <ul class="nav navbar-nav navbar-right">
@@ -128,6 +147,8 @@
     	{{ HTML::script('js/moment-min.js') }}
 
 	</div>
+
+  
 
 	<script>
   		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

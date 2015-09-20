@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost/NSCLchess',
+	'url' => 'http://localhost',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
+	'key' => $_ENV['LARAVEL_APPLICATION_KEY'],
 
 	/*
 	|--------------------------------------------------------------------------

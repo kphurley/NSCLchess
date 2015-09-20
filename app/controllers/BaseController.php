@@ -7,6 +7,9 @@ class BaseController extends Controller {
 	 *
 	 * @return void
 	 */
+
+	
+
 	protected function setupLayout()
 	{
 
@@ -19,7 +22,7 @@ class BaseController extends Controller {
 
 		View::share('teams', $teams);
 		View::share('currentUser', $currentUser);
-
+		
 
 
 		if ( ! is_null($this->layout))
@@ -33,5 +36,28 @@ class BaseController extends Controller {
 			
 		}
 	}
+
+
+	
+
+	/*THIS WAS AN ATTEMPT TO CHANGE THE SEASON VIEW ON ALL PAGES.  NOT IMPLEMENTED YET.
+
+	public function changeSeasonCurrent(){
+
+		$season = 'current';
+	    return Redirect::route('home');
+			   	
+	}
+
+	public function changeSeason2014(){
+
+		$season = '2014';
+	    return Redirect::route('home');
+			   	
+	}
+	*/
+
+	
+
 
 }

@@ -14,7 +14,10 @@
 Route::get('/', array('as'=> 'home', 'uses' => 'HomeController@showWelcome'));
 
 Route::get('users/login', array('as'=> 'login', 'uses' => 'UsersController@showLogin'));
-Route::get('users/register', array('as'=> 'register', 'uses' => 'UsersController@showRegistration'));
+
+//commented out the register route for now to prevent unwanted registrations
+//Route::get('users/register', array('as'=> 'register', 'uses' => 'UsersController@showRegistration'));
+
 Route::post('users/create', array('as'=> 'create_user', 'uses' => 'UsersController@createUser'));
 Route::post('users/signin', array('as'=> 'signin', 'uses' => 'UsersController@signinUser'));
 Route::get('users/logout', array('as'=> 'logout', 'uses' => 'UsersController@logoutUser'));
@@ -50,3 +53,8 @@ Route::get('schedule', array('as'=> 'schedule', 'uses' => 'ScheduleController@vi
 
 Route::get('password/remind', array('as'=>'password_remind','uses'=>'RemindersController@getRemind'));
 Route::post('password/sendReminder', array('uses'=>'RemindersController@postRemind'));
+
+
+//route to change season - not active yet
+//Route::get('changeSeasonCurrent', array('as'=>'change_season_current','uses'=>'BaseController@changeSeasonCurrent'));
+//Route::get('changeSeason2014', array('as'=>'change_season_2014','uses'=>'BaseController@changeSeason2014'));

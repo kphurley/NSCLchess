@@ -196,5 +196,7 @@
 {{ link_to_route('add_announcement', 'Add New Announcement', null, array('class'=>'btn btn-default btn-lg btn-block')) }}
 {{ HTML::link('Notation_Sheets_NSCL.pdf', 'View/Print Notation Sheet', array('class'=>'btn btn-default btn-lg btn-block')) }}
 {{ HTML::link('SCORESHT.pdf', 'View/Print Match Score Sheet', array('class'=>'btn btn-default btn-lg btn-block')) }}
+{{ HTML::link('https://docs.google.com/a/maine207.org/spreadsheets/d/1OQfJOy33LEbuNfqAli9vHzYucKk22pD9IlvYurg-SRo/edit?usp=sharing', 'View/Print Coaches Contact Info', array('class'=>'btn btn-default btn-lg btn-block')) }}
+
 
 @stop

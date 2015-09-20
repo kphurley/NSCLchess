@@ -30,7 +30,7 @@ class HomeController extends BaseController {
 			->with('title','Welcome to the North Suburban Chess League website')
 			->with('announcements', Announcement::orderBy('updated_at', 'desc')->take(3)->get())
 			->with('mostRecentNews', Announcement::orderBy('updated_at', 'desc')->first())
-			->with('teams',Team::all())
+			->with('teams',Team::sortable()->orderBy('win_pct', 'desc')->get())
 			->with('schedule', $schedule)
 			->with('matches', $matches)
 			->with('players', $players);
