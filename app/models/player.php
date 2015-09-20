@@ -2,6 +2,8 @@
 
 class Player extends Eloquent {
 
+	use SortableTrait;
+	
 	//public static $table = 'players';
 
 	use SortableTrait;

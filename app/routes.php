@@ -13,6 +13,7 @@
 
 Route::get('/', array('as'=> 'home', 'uses' => 'HomeController@showWelcome'));
 
+
 Route::get('users/login', array('as'=> 'login', 'uses' => 'UsersController@showLogin'));
 
 //commented out the register route for now to prevent unwanted registrations
