@@ -20,11 +20,7 @@
 	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
     	
-<<<<<<< HEAD
     <link href="css/main.css" rel="stylesheet">
-=======
-      <link href="css/main.css" rel="stylesheet">
->>>>>>> origin/master
   
   	</head>
 

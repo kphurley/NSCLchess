@@ -38,7 +38,7 @@ class HomeController extends BaseController {
 
 			//->with('teams',Team::all())
 
-			->with('teams',Team::sortable()->orderBy('win_pct', 'desc')->get())
+			->with('teams',Team::sortable()->orderBy('league_points', 'desc')->get())
 			->with('schedule', $schedule)
 			->with('matches', Match::orderBy('id', 'desc')->take(12)->get())
 			->with('players', Player::whereNotNull('school')->orderBy('league_points', 'desc')->take(12)->get());

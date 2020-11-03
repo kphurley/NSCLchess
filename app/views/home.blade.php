@@ -5,13 +5,15 @@
 	<div class="container">
 		
 			<div class="well">
-				<!-- Most recent news section -->
-
+				@if(is_null($mostRecentNews))
+					No recent news. 
+				@else
+					<!-- Most recent news section -->
 					<h1>{{ $mostRecentNews-> title }}</h1>
 					<h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Posted by {{$mostRecentNews -> author}}</h6>
 					<br>
 					{{ $mostRecentNews-> contents }}
-  
+				@endif 
 			</div>
 				
 			<div class="panel panel-primary">
@@ -82,7 +84,6 @@
 									<th>{{ SortableTrait::link_to_sorting_action('league_wins', 'Wins') }}</th>
 									<th>{{ SortableTrait::link_to_sorting_action('league_losses', 'Losses') }}</th>
 									<th>{{ SortableTrait::link_to_sorting_action('league_draws', 'Draws') }}</th>
-									<th>{{ SortableTrait::link_to_sorting_action('win_pct', 'Win Pct') }}</th>
 									<th>{{ SortableTrait::link_to_sorting_action('league_points', 'Points') }}</th>
 								
 								</tr>
@@ -97,7 +98,6 @@
 								<td>{{ $team -> league_wins }}</td>
 								<td>{{ $team -> league_losses }}</td>
 								<td>{{ $team -> league_draws }}</td>
-								<td>{{ $team -> win_pct }}</td>
 								<td>{{ $team -> league_points }}</td>
 							</tr>
 						@endif
@@ -115,7 +115,6 @@
 						<th>{{ SortableTrait::link_to_sorting_action('league_wins', 'Wins') }}</th>
 						<th>{{ SortableTrait::link_to_sorting_action('league_losses', 'Losses') }}</th>
 						<th>{{ SortableTrait::link_to_sorting_action('league_draws', 'Draws') }}</th>
-						<th>{{ SortableTrait::link_to_sorting_action('win_pct', 'Win Pct') }}</th>
 						<th>{{ SortableTrait::link_to_sorting_action('league_points', 'Points') }}</th>
 					</tr>
 				</thead>
@@ -129,7 +128,6 @@
 								<td>{{ $team -> league_wins }}</td>
 								<td>{{ $team -> league_losses }}</td>
 								<td>{{ $team -> league_draws }}</td>
-								<td>{{ $team -> win_pct }}</td>
 								<td>{{ $team -> league_points }}</td>
 							</tr>
 						@endif
