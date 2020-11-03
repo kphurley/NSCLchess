@@ -15,7 +15,7 @@ class CreateTeamsTable extends Migration {
 			$table->increments('id');
 			$table->string('school');
 			$table->string('division');
-			$table->timestamps();
+			$table->nullableTimestamps();
 		});
 	}
 

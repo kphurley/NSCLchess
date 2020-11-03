@@ -49,7 +49,7 @@ class CreateMatchesTable extends Migration {
 			$table->double('homeboard8pts');
 			$table->text('visitorboard8');
 			$table->double('visitorboard8pts');
-			$table->timestamps();
+			$table->nullableTimestamps();
 		});
 	}
 

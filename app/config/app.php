@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ALL ^ E_DEPRECATED);
 return array(
 
 	/*
@@ -64,8 +64,8 @@ return array(
 	| will not be safe. Please do this before deploying an application!
 	|
 	*/
-
-	'key' => 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
+	'cipher' => 'AES-256-CBC',
+	'key' => 'p5oMRo2HZ699pHmCyBX6bNsbXDbtu8Yj',
 
 	/*
 	|--------------------------------------------------------------------------
